@@ -10,11 +10,11 @@ data <- read.csv.sql(fn, sep=";",sql = 'select * from file where Date = "1/2/200
 
 ## doing the graph and exporting it to a png file
 png(filename = "plot3.png", width = 480, height = 480)
-
 time <- strptime(paste(data$Date, data$Time), format="%d/%m/%Y %H:%M:%S")
 plot(time, data$Sub_metering_1, ylab = "Energy sub metering", xlab='', type='n')
-lines(time, data$Sub_metering_1, col='black')
-lines(time, data$Sub_metering_2, col='red')
-lines(time, data$Sub_metering_3, col='blue')
-legend("topright", legend=c("Sub_metering_1", "Sub_metering_2", "Sub_metering_3"), lty=1, col=c('black','red','blue'))
+colors = c("black", "red", "blue")
+lines(time, data$Sub_metering_1, col=colors[1])
+lines(time, data$Sub_metering_2, col=colors[2])
+lines(time, data$Sub_metering_3, col=colors[3])
+legend("topright", legend=c("Sub_metering_1", "Sub_metering_2", "Sub_metering_3"), lty=1, col=colors)
 dev.off()
